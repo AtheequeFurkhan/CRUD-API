@@ -24,14 +24,24 @@ type Director struct{
 var movies []Movie
 
 func getMovie(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("content-Type","application/json")
+	w.Header().Set("Content-Type","application/json")
 	json.NewEncoder(w).Encode(movies)
 
 }
  
-func getMovies(){
-
+func getMovies(w http.ResponseWriter,r *http.Request){
+	w.Header().Set("Content-Type","application/json")
+	params := mux.Vars(r)
+	for index, item:= range movies{
+		if item.ID == params["id"]{
+			movies = append(movies[:index], movies[index+1:]...)
+			break
+	}
+	
 }
+}
+
+
 
 func createMovie(){
 
