@@ -1,6 +1,7 @@
 package crudapi
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -22,6 +23,28 @@ type Director struct{
 
 var movies []Movie
 
+func getMovie(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("content-Type","application/json")
+	json.NewEncoder(w).Encode(movies)
+
+}
+ 
+func getMovies(){
+
+}
+
+func createMovie(){
+
+}
+
+func updateMovie(){
+
+}
+
+func deleteMovie(){
+
+}
+
 func main(){
 	r := mux.NewRouter()
 
@@ -42,3 +65,4 @@ func main(){
 	fmt.Printf("Starting Server at 8080!")
 	log.Fatal(http.ListenAndServe(":8080",r))
 }
+
